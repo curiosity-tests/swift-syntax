@@ -115,7 +115,7 @@ extension Parser {
       case TokenSpec(.objc): self = .objc
       case TokenSpec(.Sendable): self = .Sendable
       case TokenSpec(.transpose): self = .transpose
-      case TokenSpec(.`yield_once`): self = .yield_once
+      case TokenSpec(.`yield_once`) where languageFeatures.contains(.coroutineFunctions): self = .yield_once
       default:
         return nil
       }
