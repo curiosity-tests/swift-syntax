@@ -41,7 +41,7 @@ jobs:
     name: Test
     uses: curiosity-tests/github-workflows/.github/workflows/swift_package_test.yml@0.0.15-racecar
     with:
-      chalk_on: ${{ inputs.leg == 'instrumented' }}
+      chalk_on: ${{ (inputs.leg == 'instrumented') && 'true' || 'false' }}
       profile: ${{ inputs.profile || 'curiosity-tests-racecar' }}
       # linux-build's "Check out related PRs" step ran under workflow_dispatch
       # despite its own guard and called cross-pr-checkout.swift with an empty PR
@@ -56,7 +56,7 @@ jobs:
     name: Soundness
     uses: curiosity-tests/github-workflows/.github/workflows/soundness.yml@0.0.15-racecar
     with:
-      chalk_on: ${{ inputs.leg == 'instrumented' }}
+      chalk_on: ${{ (inputs.leg == 'instrumented') && 'true' || 'false' }}
       profile: ${{ inputs.profile || 'curiosity-tests-racecar' }}
       api_breakage_check_enabled: false  # https://github.com/swiftlang/swift-syntax/issues/3010
       docs_check_additional_arguments: "--disable-parameters-and-returns-validation"
